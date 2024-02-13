@@ -1,23 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import Form from "./components/Form";
+import ProductList from "./components/ProductList";
 
 function App() {
+  const [updateProductList, setUpdateProductList] = useState(false);
+
+  const handleProductAdded = () => {
+    // Toggle the state to trigger a re-render of ProductList
+    setUpdateProductList(!updateProductList);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Form onProductAdded={handleProductAdded} />
+      <ProductList key={updateProductList} />
     </div>
   );
 }
